@@ -1,6 +1,6 @@
 /*--
   Open3DMotion 
-  Copyright (c) 2004-2012.
+  Copyright (c) 2004-2013.
   All rights reserved.
   See LICENSE.txt for more information.
 --*/
@@ -13,11 +13,11 @@
 #include "Open3DMotion/OpenORM/Branches/TreeList.h"
 #include "Open3DMotion/Biomechanics/Trial/EventGroup.h"
 #include <pugixml.hpp>
-#include <cstring>
 
 namespace Open3DMotion
 {
-	XMLReadingMachineLegacy::XMLReadingMachineLegacy() :
+	XMLReadingMachineLegacy::XMLReadingMachineLegacy(const BinMemFactory& _memfactory) :
+		XMLReadingMachine(_memfactory),
 		legacy(legacy_none)
 	{
 	}

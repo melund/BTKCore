@@ -36,7 +36,7 @@ namespace Open3DMotion
 		// base class will register data members
 	}
 
-	void TimeSequence::Allocate(const std::vector<BinaryFieldSpec>& layout, const TimeRange& t, BinMemFactory& memfactory)
+	void TimeSequence::Allocate(const std::vector<BinaryFieldSpec>& layout, const TimeRange& t, const BinMemFactory& memfactory)
 	{
 		// copy descriptor info
 		Frames = t.Frames;
@@ -47,4 +47,11 @@ namespace Open3DMotion
 		RichBinary::Allocate(layout, Frames.Value(), memfactory);
 	}
 
+
+	void TimeSequence::GetTimeRange(TimeRange& t) const
+	{
+		t.Start = Start;
+		t.Rate = Rate;
+		t.Frames = Frames;
+	}
 }

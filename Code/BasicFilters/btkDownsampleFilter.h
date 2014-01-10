@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -209,6 +209,9 @@ namespace btk
   template <class T>
   inline void DownsampleData(int ratio, btkSharedPtr<T> input, btkSharedPtr<T> output)
   {
+    btkNotUsed(ratio);
+    btkNotUsed(input);
+    btkNotUsed(output);
     btkErrorMacro("Generic method. Please specialize it.");
   };
 

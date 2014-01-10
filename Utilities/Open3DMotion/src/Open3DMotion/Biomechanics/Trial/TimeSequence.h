@@ -21,7 +21,9 @@ namespace Open3DMotion
 
 	public:
 
-		void Allocate(const std::vector<BinaryFieldSpec>& layout, const TimeRange& t, BinMemFactory& memfactory);
+		void Allocate(const std::vector<BinaryFieldSpec>& layout, const TimeRange& t, const BinMemFactory& memfactory);
+
+		void GetTimeRange(TimeRange& t) const;
 
 	public:
 
@@ -47,8 +49,8 @@ namespace Open3DMotion
 	public:
 
 		/** Immutable access to frames count */
-		Int32 NumFrames() const
-		{ return Frames; }
+		size_t NumFrames() const
+		{ return (size_t) Frames.Value(); }
 
 	private:
 		MapInt32 Frames;

@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -119,8 +119,13 @@ The gain has a limited range of possible values and are listed in the following 
  - btk.btkAnalog.PlusMinus10: gain for the range +/- 10 volts;
  - btk.btkAnalog.PlusMinus5: gain for the range +/- 5 volts;
  - btk.btkAnalog.PlusMinus2Dot5: gain for the range +/- 2.5 volts;
+ - btk.btkAnalog.PlusMinus1Dot65: gain for the range +/- 1.65 volts;
  - btk.btkAnalog.PlusMinus1Dot25: gain for the range +/- 1.25 volts;
- - btk.btkAnalog.PlusMinus1: gain for the range +/- 1 volts;.
+ - btk.btkAnalog.PlusMinus1: gain for the range +/- 1 volt;
+ - btk.btkAnalog.PlusMinus0Dot5: gain for the range +/- 0.5 volt;
+ - btk.btkAnalog.PlusMinus0Dot25: gain for the range +/- 0.25 volt;
+ - btk.btkAnalog.PlusMinus0Dot1: gain for the range +/- 0.1 volt;
+ - btk.btkAnalog.PlusMinus0Dot05: gain for the range +/- 0.05 volt.
 
 Note: The informations associated (unit, scale, offset, gain) are useful for other classes/methods. 
 For example, when you save an acquisition in a file, analog's data are generally unscaled and written as integer, 

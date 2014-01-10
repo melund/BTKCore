@@ -8,7 +8,7 @@
 #include "XMLWritingMachineLegacy.h"
 #include "Open3DMotion/OpenORM/IO/XML/ReadWriteXML.h"
 #include "Open3DMotion/OpenORM/Mappings/RichBinary/BinaryFieldSpec.h"
-#include "Open3DMotion/Biomechanics//Trial/Trial.h"
+#include "Open3DMotion/Biomechanics/Trial/Trial.h"
 #include <pugixml.hpp>
 #include <memory>
 

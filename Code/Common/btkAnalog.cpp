@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -79,6 +79,10 @@ namespace btk
   /**
    * @var Analog::Gain Analog::PlusMinus2Dot5
    * +/- 2.5 volts.
+   */
+  /**
+   * @var Analog::Gain Analog::PlusMinus1Dot65
+   * +/- 1.65 volts.
    */
   /**
    * @var Analog::Gain Analog::PlusMinus1Dot25
@@ -199,16 +203,48 @@ namespace btk
   };
 
   /**
-   * @fn int Analog::GetOffset() const
-   * Returns the analog offset value in bit which represents the 0 value.
+   * Try to set gain from the given value @a g.
+   * The input must represent one of the value associated with the enum Analog::Gain.
+   * These value can be interpreted as the half ot voltage range expressed in mV.
+   */
+  void Analog::SetGainFromValue(int g)
+  {
+    switch(g)
+    {
+    case Analog::PlusMinus10:
+    case Analog::PlusMinus5:
+    case Analog::PlusMinus2Dot5:
+    case Analog::PlusMinus1Dot65:
+    case Analog::PlusMinus1Dot25:
+    case Analog::PlusMinus1:
+    case Analog::PlusMinus0Dot5:  
+    case Analog::PlusMinus0Dot25:
+    case Analog::PlusMinus0Dot1:
+    case Analog::PlusMinus0Dot05:
+      this->SetGain(static_cast<Analog::Gain>(g));
+      break;
+    default:
+      btkWarningMacro("Unknown gain. Replaced by a gain of +/- 10 volts.");
+      this->SetGain(Analog::PlusMinus10);
+      break;
+    }
+  };
+  
+  /**
+   * @fn double Analog::GetOffset() const
+   * Returns the analog offset value in bit which represents the 0 value for a digital to analog converter (DAC).
+   *
+   * Since BTK 0.4, it is possible to store the offset as a real instead of an integer.
+   * This does not has a physical meaning in term of DAC converter (as you cannot remove a fractionnal part of a bit).
+   * However, this has the benefit to give the possibility to convert digital sensor measure to analog sensor measure.
    */
 
   /**
    * Sets the analog offset.
    */
-  void Analog::SetOffset(int o)
+  void Analog::SetOffset(double o)
   {
-    if (this->m_Offset == o)
+    if (fabs(this->m_Offset - o) <= std::numeric_limits<double>::epsilon())
       return;
     this->m_Offset = o;
     this->Modified();
@@ -247,7 +283,7 @@ namespace btk
   : Measure<Analog>(label, desc), m_Unit("V")
   {
     this->m_Gain = Unknown;
-    this->m_Offset = 0;
+    this->m_Offset = 0.0;
     this->m_Scale = 1.0;
   };
   
@@ -258,7 +294,7 @@ namespace btk
   : Measure<Analog>(label, frameNumber), m_Unit("V")
   {
     this->m_Gain = g;
-    this->m_Offset = 0;
+    this->m_Offset = 0.0;
     this->m_Scale = 1.0;
   };
 

@@ -8,6 +8,8 @@
 #include "Open3DMotion/MotionFile/Formats/CODAText/MATextReader.h"
 #include "Open3DMotion/MotionFile/Formats/CODAText/MATextInputStream.h"
 
+#include <stdio.h>
+
 namespace Open3DMotion
 {
 	MATextReader::MATextReader()
@@ -120,7 +122,7 @@ namespace Open3DMotion
 		}
 	}
 
-	TimeSequence* MATextReader::GetTSScalar(const char* groupname, const char* channelname, BinMemFactory& memfactory) const
+	TimeSequence* MATextReader::GetTSScalar(const char* groupname, const char* channelname, const BinMemFactory& memfactory) const
 	{
 		size_t index = ColumnIndex(groupname, channelname);
 		if (index == invalid_index)
@@ -156,7 +158,7 @@ namespace Open3DMotion
 	}
 
 
-	TimeSequence* MATextReader::GetTSOccVector3(const char* groupname, const char* channelname, BinMemFactory& memfactory) const
+	TimeSequence* MATextReader::GetTSOccVector3(const char* groupname, const char* channelname, const BinMemFactory& memfactory) const
 	{
 		// expected channel col names
 		std::string channel_x = std::string(channelname) + ".X";

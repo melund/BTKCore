@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -288,7 +288,7 @@ namespace btk
    */  
   void IMU::SetCalMatrix(const CalMatrix& cal)
   {
-    if ((this->m_CalMatrix.data() != 0) && (this->m_CalMatrix.isApprox(cal)))
+    if ((this->m_CalMatrix.data() != 0) && ((this->m_CalMatrix - cal).cwiseAbs().maxCoeff() <= Eigen::NumTraits<CalMatrix::Scalar>::dummy_precision()))
       return;
     this->m_CalMatrix = cal;
     this->Modified();

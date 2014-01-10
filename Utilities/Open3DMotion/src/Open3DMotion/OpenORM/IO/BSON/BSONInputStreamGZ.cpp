@@ -7,6 +7,8 @@
 
 #include "BSONInputStreamGZ.h"
 #include <zlib.h>
+#include <memory.h>
+#include <stdlib.h>
 
 namespace Open3DMotion
 {
@@ -19,7 +21,7 @@ namespace Open3DMotion
 		strm = (z_stream*)malloc(sizeof(z_stream));
 		input_buffer = (UInt8*)malloc(chunk_size);
 		output_buffer = (UInt8*)malloc(chunk_size);
-		memset(strm, NULL, sizeof(z_stream));
+		memset(strm, 0, sizeof(z_stream));
 		inflateInit2(strm, (16UL + 15UL));
 	}
 

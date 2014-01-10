@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -164,7 +164,7 @@ namespace btk
           for (Acquisition::AnalogIterator it = output->BeginAnalog() ; it != output->EndAnalog() ; ++it)
           {
             (*it)->SetScale(scale);
-            (*it)->SetOffset(5); // 5V
+            (*it)->SetOffset(5.0); // 5V
             (*it)->SetGain(Analog::PlusMinus10);
           }
         }
@@ -180,7 +180,7 @@ namespace btk
           for (Acquisition::AnalogIterator it = output->BeginAnalog() ; it != output->EndAnalog() ; ++it)
           {
             (*it)->SetScale(scale);
-            (*it)->SetOffset(5); // 5V
+            (*it)->SetOffset(5.0); // 5V
             (*it)->SetGain(Analog::PlusMinus10); // NOTE: Only assumed from the offset value.
           }
         }
@@ -239,25 +239,7 @@ namespace btk
           (*it)->SetUnit(bifs.ReadString(bifs.ReadU32()));
           (*it)->SetLabel(bifs.ReadString(bifs.ReadU32()));
           gains[inc] = bifs.ReadDouble(); // System gain
-          int gain = static_cast<int>(gains[inc]);
-          switch(gain)
-          {
-          case Analog::PlusMinus10:
-          case Analog::PlusMinus5:
-          case Analog::PlusMinus2Dot5:
-          case Analog::PlusMinus1Dot25:
-          case Analog::PlusMinus1:
-          case Analog::PlusMinus0Dot5:  
-          case Analog::PlusMinus0Dot25:
-          case Analog::PlusMinus0Dot1:
-          case Analog::PlusMinus0Dot05:
-            (*it)->SetGain(static_cast<Analog::Gain>(gain));
-            break;
-          default:
-            btkWarningMacro(filename, "Unknown gain. Contact the developer to add it in the list. Replaced by a gain of +/- 10 volts.");
-            (*it)->SetGain(Analog::PlusMinus10);
-            break;
-          }
+          (*it)->SetGainFromValue(static_cast<int>(gains[inc]));
           bifs.SeekRead(8, BinaryFileStream::Current); // AD gain
           resolutions[inc] = bifs.ReadDouble();
           offsets[inc] = bifs.ReadDouble();
@@ -269,7 +251,7 @@ namespace btk
             bifs.SeekRead(12, BinaryFileStream::Current);
           }
           (*it)->SetScale(resolutions[inc] / gains[inc]);
-          (*it)->SetOffset(static_cast<int>(offsets[inc] / gains[inc]));
+          (*it)->SetOffset(offsets[inc] / gains[inc]);
           ++inc;
         }
         // Data

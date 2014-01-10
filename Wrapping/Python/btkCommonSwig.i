@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -95,14 +95,14 @@ BTK_SWIG_EXTEND_CLASS_GETSET_VECTOR(Analog, Value);
 BTK_SWIG_DECLARE_IMPL_CLASS_DATA(Analog)
 {
 public:
-  typedef enum {Unknown = btk::Analog::Unknown, PlusMinus10 = btk::Analog::PlusMinus10, PlusMinus5 = btk::Analog::PlusMinus5, PlusMinus2Dot5 = btk::Analog::PlusMinus2Dot5, PlusMinus1Dot25 = btk::Analog::PlusMinus1Dot25, PlusMinus1 = btk::Analog::PlusMinus1, PlusMinus0Dot5 = btk::Analog::PlusMinus0Dot5, PlusMinus0Dot25 = btk::Analog::PlusMinus0Dot25, PlusMinus0Dot1 = btk::Analog::PlusMinus0Dot1, PlusMinus0Dot05 = btk::Analog::PlusMinus0Dot05} Gain;
+  typedef enum {Unknown = btk::Analog::Unknown, PlusMinus10 = btk::Analog::PlusMinus10, PlusMinus5 = btk::Analog::PlusMinus5, PlusMinus2Dot5 = btk::Analog::PlusMinus2Dot5, PlusMinus1Dot65 = btk::Analog::PlusMinus1Dot65, PlusMinus1Dot25 = btk::Analog::PlusMinus1Dot25, PlusMinus1 = btk::Analog::PlusMinus1, PlusMinus0Dot5 = btk::Analog::PlusMinus0Dot5, PlusMinus0Dot25 = btk::Analog::PlusMinus0Dot25, PlusMinus0Dot1 = btk::Analog::PlusMinus0Dot1, PlusMinus0Dot05 = btk::Analog::PlusMinus0Dot05} Gain;
   BTK_SWIG_DECLARE_IMPL_GETSET(Label, std::string&);
   BTK_SWIG_DECLARE_IMPL_GETSET(Description, std::string&);
   BTK_SWIG_DECLARE_IMPL_GETSET(Values, btk::Analog::Values&);
   BTK_SWIG_DECLARE_IMPL_GETSET(FrameNumber, int);
   BTK_SWIG_DECLARE_IMPL_GETSET(Unit, std::string&);
   BTK_SWIG_DECLARE_IMPL_GETSET(Gain, Gain);
-  BTK_SWIG_DECLARE_IMPL_GETSET(Offset, int);
+  BTK_SWIG_DECLARE_IMPL_GETSET(Offset, double);
   BTK_SWIG_DECLARE_IMPL_GETSET(Scale, double);
   btkAnalogData GetData() const;
   void SetData(btkAnalogData , bool parenting = true);

@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -80,7 +80,7 @@ namespace btk
     
     typedef enum {Unknown = 0, 
                   PlusMinus10 = 10000, PlusMinus5 = 5000, PlusMinus2Dot5 = 2500, 
-                  PlusMinus1Dot25 = 1250, PlusMinus1 = 1000, PlusMinus0Dot5 = 500, 
+                  PlusMinus1Dot65 = 1650, PlusMinus1Dot25 = 1250, PlusMinus1 = 1000, PlusMinus0Dot5 = 500, 
                   PlusMinus0Dot25 = 250, PlusMinus0Dot1 = 100, PlusMinus0Dot05 = 50} Gain;
 
     typedef btkSharedPtr<Analog> Pointer;
@@ -99,8 +99,9 @@ namespace btk
     BTK_COMMON_EXPORT void SetUnit(const std::string& u);
     Gain GetGain() const {return this->m_Gain;};
     BTK_COMMON_EXPORT void SetGain(Gain g);
-    int GetOffset() const {return this->m_Offset;};
-    BTK_COMMON_EXPORT void SetOffset(int o);
+    BTK_COMMON_EXPORT void SetGainFromValue(int g);
+    double GetOffset() const {return this->m_Offset;};
+    BTK_COMMON_EXPORT void SetOffset(double o);
     double GetScale() const {return this->m_Scale;};
     BTK_COMMON_EXPORT void SetScale(double s);
 
@@ -118,7 +119,7 @@ namespace btk
     
     std::string m_Unit;
     Gain m_Gain;
-    int m_Offset;
+    double m_Offset;
     double m_Scale;
   };
   

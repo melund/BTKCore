@@ -8,6 +8,9 @@
 #include "Open3DMotion/OpenORM/IO/BSON/BSONReaderMOBL.h"
 #include "Open3DMotion/OpenORM/Leaves/MemoryHandlerBasic.h"
 #include "Open3DMotion/OpenORM/Leaves/TreeBinary.h"
+#include "Open3DMotion/OpenORM/Mappings/RichBinary/BinMemFactory.h"
+
+#include <memory>
 
 namespace Open3DMotion
 {
@@ -27,9 +30,9 @@ namespace Open3DMotion
 			{
 				SkipBytes(4);
 				numbytes -= 4;
-				MemoryHandlerBasic memory(numbytes);
-				ReadBinary(memory.Data(), numbytes);
-				return new TreeBinary(&memory);
+				std::auto_ptr<MemoryHandler> memory( MemFactory().Allocate(numbytes) );
+				ReadBinary(memory->Data(), numbytes);
+				return new TreeBinary(memory.get());
 			}
 			else
 			{

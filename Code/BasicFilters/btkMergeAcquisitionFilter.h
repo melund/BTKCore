@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -71,7 +71,7 @@ namespace btk
     
   private:
     void MergeAcquisition(int idx, Acquisition::Pointer out);
-    void MergeData(Acquisition::Pointer output, Acquisition::Pointer input, int frameNumber) const;
+    void MergeData(Acquisition::Pointer output, Acquisition::Pointer input, int diffFF, int oldInputNumFrames) const;
     void ConcatData(Acquisition::Pointer output, Acquisition::Pointer input) const;
     void RemoveDeprecatedMetaData(MetaData::Pointer in, bool pointScreenToRemove = false) const;
     void CleanMetaData(MetaData::Pointer in) const;

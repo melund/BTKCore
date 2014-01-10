@@ -6,7 +6,7 @@ PROJECT(BTK)
 
 # BTK version number.
 SET(BTK_VERSION_MAJOR 0)
-SET(BTK_VERSION_MINOR 3)
+SET(BTK_VERSION_MINOR 4dev)
 SET(BTK_VERSION_PATCH 0)
 SET(BTK_VERSION_STRING "${BTK_VERSION_MAJOR}.${BTK_VERSION_MINOR}.${BTK_VERSION_PATCH}")
 # The major.minor is enough to distinguish available features of the toolkit. Moreover, 
@@ -38,6 +38,7 @@ SET(CMAKE_MODULE_PATH "${BTK_CMAKE_MODULE_PATH}")
 
 # Load some macros.
 INCLUDE(${BTK_CMAKE_MODULE_PATH}/btkMacCompilerFlags.cmake)
+INCLUDE(${BTK_CMAKE_MODULE_PATH}/btkLinuxCompilerFlags.cmake)
 INCLUDE(CMakeDependentOption)
 INCLUDE(CheckIncludeFile)
 INCLUDE(CheckIncludeFileCXX)

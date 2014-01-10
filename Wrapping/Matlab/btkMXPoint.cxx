@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -131,6 +131,6 @@ void btkMXCreatePointsStructure(btk::Acquisition::Pointer acq, int nlhs, mxArray
     mxSetFieldByNumber(plhs[1], 0, 2, unitsStruct);
     mxSetFieldByNumber(plhs[1], 0, 3, labelsStruct);
     mxSetFieldByNumber(plhs[1], 0, 4, descsStruct);
-    mxSetFieldByNumber(plhs[1], 0, 3, residualsStruct);
+    mxSetFieldByNumber(plhs[1], 0, 5, residualsStruct);
   }
 }; 

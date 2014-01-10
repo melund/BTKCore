@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -50,6 +50,8 @@ namespace btk
       std::vector<T>& values,
       MetaDataInfo::ConstPointer info)
   {
+    btkNotUsed(values);
+    btkNotUsed(info);
     btkErrorMacro("Error during metadata's value collapsing. Generic method used.");
   };
 

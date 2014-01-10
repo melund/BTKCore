@@ -116,11 +116,7 @@ namespace Open3DMotion
 		Eigen::Vector3f CTd = CT * d;
 
 		// solve
-#if EIGEN_VERSION_AT_LEAST(3,0,0)
 		y = CTC.ldlt().solve(CTd);
-#else
-    CTC.ldlt().solve(CTd, &y);
-#endif
 
 		// compute rms error if requested
 		if (rms)

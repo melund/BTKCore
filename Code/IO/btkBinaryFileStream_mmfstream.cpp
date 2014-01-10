@@ -1,6 +1,6 @@
 /* 
  * The Biomechanical ToolKit
- * Copyright (c) 2009-2013, Arnaud Barré
+ * Copyright (c) 2009-2014, Arnaud Barré
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -235,12 +235,7 @@ namespace btk
     
     return this;
   };
-  
-  /**
-   * @fn bool mmfilebuf::is_eob() const
-   * Check if the position of the pointer on the data is at the end of the buffer.
-   */
-  
+
   /**
    * @fn bool mmfilebuf::writemode() const
    * Check if this file buffer is in write mode or not.
@@ -319,11 +314,11 @@ namespace btk
    */
   std::streamsize mmfilebuf::sgetn(char* s, std::streamsize n)
   {
-    std::streamoff n_ = (((this->m_Position + n)  == 0) || ((this->m_Position + n) > this->m_BufferSize)) ? ((this->m_BufferSize - this->m_Position - 1) > 0 ? this->m_BufferSize - this->m_Position - 1 : 0) : n;
-    for (std::streamoff i = 0 ; i < n_ ; ++i)
+    n = (((this->m_Position + n)  == 0) || ((this->m_Position + n) > this->m_BufferSize)) ? ((this->m_BufferSize - this->m_Position - 1) > 0 ? this->m_BufferSize - this->m_Position - 1 : 0) : n;
+    for (std::streamoff i = 0 ; i < n ; ++i)
       s[i] = this->mp_Buffer[this->m_Position + i];
-    this->m_Position += n_;
-    return n_;
+    this->m_Position += n;
+    return n;
   };
   
   /**
@@ -332,7 +327,7 @@ namespace btk
    */
   std::streamsize mmfilebuf::sputn(const char* s, std::streamsize n)
   {
-    while ((this->m_Position + n) >= this->m_BufferSize) 
+    while ((this->m_Position + n) > this->m_BufferSize) 
     {
       if (!this->resizemap())
         return 0;
@@ -515,8 +510,6 @@ namespace btk
   {
     if (this->m_Filebuf.sgetn(s,n) != n)
       this->setstate(std::ios_base::eofbit | std::ios_base::failbit);
-    else if (this->m_Filebuf.is_eob())
-      this->setstate(std::ios_base::eofbit);
     return *this;
   };
   
