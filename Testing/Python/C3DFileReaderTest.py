@@ -17,6 +17,17 @@ class C3DFileReaderTest(unittest.TestCase):
         self.assertRaises(RuntimeError, reader.Update)
         # self.assertRaisesRegexp(RuntimeError, 'File doesn\'t exist\nFilename: test.c3d', reader.Update) # Python 2.7+
     
+
+    def assertAlmostEqual(self, first, second, places=7, msg=None, delta=None):
+        try:
+            super().assertAlmostEqual(first,second,places,msg, delta)
+        except TypeError:
+            first = float(first)
+            second = float(second)
+            super().assertAlmostEqual(first,second,places,msg, delta)
+
+
+
     def test_Sample01_Eb015pi(self):
         reader = btk.btkAcquisitionFileReader()
         reader.SetFilename(_TDDConfigure.C3DFilePathIN + 'sample01/Eb015pi.c3d')

@@ -4,6 +4,17 @@ import _TDDConfigure
 import numpy
 
 class ForcePlatformsExtractorTest(unittest.TestCase):
+
+    def assertAlmostEqual(self, first, second, places=7, msg=None, delta=None):
+        try:
+            super().assertAlmostEqual(first,second,places,msg, delta)
+        except TypeError:
+            first = float(first)
+            second = float(second)
+            super().assertAlmostEqual(first,second,places,msg, delta)
+    
+
+
     def test_FileSample01Eb015pi(self):
         reader = btk.btkAcquisitionFileReader()
         reader.SetFilename(_TDDConfigure.C3DFilePathIN + "sample01/Eb015pi.c3d")

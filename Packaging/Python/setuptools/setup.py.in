@@ -19,7 +19,7 @@ elif platform.system() == 'Linux':
 bdist_original_filename = ''
 bdist_final_filename = ''
 if len(sys.argv) > 1:
-    for i in xrange(1,len(sys.argv)):
+    for i in range(1,len(sys.argv)):
         if (sys.argv[i] == 'bdist_egg'):
             bdist_original_filename = name + '-' + version + '-py' + get_python_version() + '.egg'
             bdist_final_filename = name + '-' + version + '-py' + get_python_version() + '_' + get_build_platform() + '.egg'
