@@ -3,6 +3,17 @@ import unittest
 import _TDDConfigure
 
 class AcquisitionUnitConverterTest(unittest.TestCase):
+
+    def assertAlmostEqual(self, first, second, places=7, msg=None, delta=None):
+        try:
+            super().assertAlmostEqual(first,second,places,msg, delta)
+        except TypeError:
+            first = float(first)
+            second = float(second)
+            super().assertAlmostEqual(first,second,places,msg, delta)
+    
+
+
     def test_NoInputNoConversion(self):
         uc = btk.btkAcquisitionUnitConverter()
         uc.Update()
