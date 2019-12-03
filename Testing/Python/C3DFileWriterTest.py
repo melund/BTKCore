@@ -1172,11 +1172,11 @@ class C3DFileWriterTest(unittest.TestCase):
     dims = metadata.GetChild('DESCRIPTIONS').GetInfo().GetDimensions()
     blank = metadata.GetChild('DESCRIPTIONS').GetInfo().ToString()
     self.assertEqual(dims[0], 0)
-    for i in xrange(0,num):
+    for i in range(0,num):
           self.assertEqual(blank[i], '')
     dims = metadata.GetChild('SUBJECTS').GetInfo().GetDimensions()
     blank = metadata.GetChild('SUBJECTS').GetInfo().ToString()
     self.assertEqual(dims[0], 0)
-    for i in xrange(0,num):
+    for i in range(0,num):
           self.assertEqual(blank[i], '')
     
