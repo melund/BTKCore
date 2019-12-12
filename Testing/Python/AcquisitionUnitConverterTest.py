@@ -97,17 +97,17 @@ class AcquisitionUnitConverterTest(unittest.TestCase):
         a2 = output.GetAnalog(1)
         b = a2.GetValues()
 
-        self.assertAlmostEqual(a[0], 1.23456, 10)
-        self.assertAlmostEqual(a[1], 0.03465, 10)
-        self.assertAlmostEqual(a[2], 0.09808, 10)
-        self.assertAlmostEqual(a[3], 0.98712, 10)
-        self.assertAlmostEqual(a[4], 0.65412, 10)
+        self.assertAlmostEqual(float(a[0]), 1.23456, 10)
+        self.assertAlmostEqual(float(a[1]), 0.03465, 10)
+        self.assertAlmostEqual(float(a[2]), 0.09808, 10)
+        self.assertAlmostEqual(float(a[3]), 0.98712, 10)
+        self.assertAlmostEqual(float(a[4]), 0.65412, 10)
 
-        self.assertAlmostEqual(b[0], 1.5600, 10)
-        self.assertAlmostEqual(b[1], 1.6500, 10)
-        self.assertAlmostEqual(b[2], 1.5400, 10)
-        self.assertAlmostEqual(b[3], 0.98712, 10)
-        self.assertAlmostEqual(b[4], 1.8964, 10)
+        self.assertAlmostEqual(float(b[0]), 1.5600, 10)
+        self.assertAlmostEqual(float(b[1]), 1.6500, 10)
+        self.assertAlmostEqual(float(b[2]), 1.5400, 10)
+        self.assertAlmostEqual(float(b[3]), 0.98712, 10)
+        self.assertAlmostEqual(float(b[4]), 1.8964, 10)
 
     def test_ConversionFromFile(self):
         reader = btk.btkAcquisitionFileReader()
